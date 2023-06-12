@@ -4,16 +4,27 @@ import App from './App.jsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
-import Clientes from './pages/Clientes.jsx'
-import Especialistas from './pages/Especialistas.jsx'
-import Servicios from './pages/Servicios.jsx'
-import Consultas from './pages/Consultas.jsx'
-import Dashboard from './pages/Dashboard.jsx'
-import ErrorPage from './pages/ErrorPage.jsx'
-import Home from './pages/Home.jsx'
-import Profile from './pages/Profile.jsx'
+import Clientes from './pages/Clientes'
+import Especialistas from './pages/Especialistas'
+import Servicios from './pages/Servicios'
+import Consultas from './pages/Consultas'
+import Dashboard from './pages/Dashboard'
+import ErrorPage from './pages/ErrorPage'
+import Login from './pages/Login'
+import Home from './pages/Home'
+import Profile from './pages/Profile'
+import Register from './pages/Register.jsx';
+import { AuthProvider } from './context/authContext'
 
 const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
   {
     path: "/",
     element: <App />,
@@ -53,6 +64,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )

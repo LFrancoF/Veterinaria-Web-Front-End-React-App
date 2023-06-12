@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
 function Header() {
+
+  const { logout } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = () =>{
+    logout()
+    navigate('/login')
+  }
+
   return (
     <nav className="main-header navbar navbar-expand navbar-white navbar-light">
       {/* Left navbar links */}
@@ -96,9 +106,11 @@ function Header() {
               <span className="float-right text-muted text-sm">12 hours</span>
             </a>
             <div className="dropdown-divider" />
-            <Link to="home" className="dropdown-item dropdown-footer">
-              Logout
-            </Link>
+            <div to="" className="dropdown-item dropdown-footer">
+              <button style={{border: "none", backgroundColor: "transparent"}} onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
           </div>
         </li>
       </ul>
